@@ -1,0 +1,51 @@
+# Test Case: [Feature/Functionality Name]
+
+## Test Case ID
+**TC-101** (Unique identifier for tracking)
+
+## Test Title
+** "Login with Valid Credentials"
+
+## Description
+"Ensure users can log in with correct credentials."
+
+## Test Type
+- Functional
+
+## Priority
+- High 
+
+## Pre-conditions
+- User must have a valid account.
+- System must be connected to the internet.
+
+## Test Steps
+1. [Step 1: Navigate to Login Page]
+2. [Step 2: Enter valid credentials]
+3. [Step 3: Click the 'Login' button]
+4. [Step 4: Verify the home screen loads successfully]
+
+## Expected Result
+"User is successfully logged in and redirected to the homepage."
+
+## Actual Result
+"User logged in successfully."
+
+## Test Data
+- **Username:** testuser@example.com
+- **Password:** Secure@123
+
+## Status
+"Pass"
+
+## Environment
+Specify the test environment details.  
+- **OS:** Windows 11 
+- **Browser:** Chrome 120 / Edge 110
+- **Device:** Mobile / Desktop
+
+## Notes
+(Any additional comments, issues, or observations.)
+
+## Attachments
+(Add any screenshots, logs, or relevant files if needed.)
