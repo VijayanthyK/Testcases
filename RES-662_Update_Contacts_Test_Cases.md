@@ -44,6 +44,19 @@ This package updates Contact records in Microsoft Dataverse based on updates fro
 | TC-662-05 | Verify timestamp and updated_by fields in the contact table are modified correctly | - | 1. Run SSIS package |  `0x00000000000727DA`<br>`0x020000000009D6`<br>`0x010D90000000424`<br>`0x00000000006CFA06`<br>`0x0000000006CC18C`<br>`0x0000000006CD204` | Updated records should reflect new timestamp and user | Updated records reflect new timestamp and user | Pass | - |
 | TC-662-06 | Verify no updates are made to Birthday column in contact table in Dataverse when SSIS_CRM_API config value is set to 'N' | Neo2_Prod.Passenger has valid Birth_date and Contact table has no data in Birthday in Production_ED and Dataverse<br>Neo2_Prod.External_Use has a record for Contact but Web_Registered_Date is null | 1. Run package<br>2. Validate Production_ED.Contact<br>3. Validate Dataverse | - | Birthday and Web_Registered_Date columns in Production_ED.Contact table updated but no update to Birthday and col_webregistereddate columns in Dataverse.contact | As expected | Pass | - |
 | TC-662-07 | Verify no updates are made to Birthday column in contact table in Production_ED when SSIS_CRM_API config value is set to 'Y' | Neo2_Prod.Passenger has valid Birth_date and Contact table has no data in Birthday in Production_ED and Dataverse<br>Neo2_Prod.External_Use has a record for Contact but Web_Registered_Date is null | 1. Run package<br>2. Validate Production_ED.Contact<br>3. Validate Dataverse | - | Birthday and Web_Registered_Date columns in Production_ED.Contact table not updated but col_webregistereddate in Dataverse.Contact was updated | Birthday in Production_ED is not updated<br>Birthday in Dynamics is updated | Pass | - |
-|
+
+# Verification Queries
+
+| **Purpose** | **Query** |
+|-------------|-----------|
+| Query to update `Has_Bkg_History` to 1 in contact table | `update contact set Has_Bkg_History = 1 where contact_id = <contact_id>` |
+| Query to find `Has_Bkg_History` is updated in `PIV16SQLTEST` | `select rn_edit_Date, rn_edit_user, Has_Bkg_History from contact where contact_id = <contact_id>` |
+| Query to find `col_hasbkghistory` is updated in Dataverse | `select col_hasbkghistory, col_personid, modifiedby, modifiedon from contact where conact_id = <contact_id>` |
+| Query to get the Contacts having Birthdate Null in `Production_Ed.Contact` and value in birthday column in `Neo2_Prod.Passenger` | ```sql SELECT DISTINCT C.Contact_Id, PAX.Birth_Date AS 'Birthday', strBirthdate = LEFT((REPLACE((CONVERT(CHAR(10), PAX.Birth_Date, 101)), '/', '')), 8) FROM Production_ED..Contact AS C (NOLOCK) INNER JOIN Neo2_Prod..Passenger AS PAX WITH (NOLOCK) ON PAX.Pivotal_Contact_Id = C.Pivotal_ID WHERE C.Birthday IS NULL AND C.Contact_Id <> 0x00000000003904A2 AND PAX.Birth_Date IS NOT NULL AND PAX.Birth_Date <> '01/01/1900' ``` |
+| Query to find `Birth_date` is updated in `Production_Ed` | `select pivotal_id, contact_id, birthday, strBirthdate from Production_ED.dbo.contact where contact_id = <contact_id>` |
+| Query to find `Birth_date` is updated in Dataverse | `select birthdate, col_personid, modifiedby, mofifiedon from contact where col_personid = <>` |
+| Query to find `web_registered_date` is updated in `PIV16SQLTEST` | `select rn_edit_Date, rn_edit_user, Web_Registered_Date, pivotal_id from Production_ED.dbo.contact where contact_id in <>` |
+| Query to find `col_webregistereddate` is updated in Dataverse | `select col_webregistereddate, col_personid, modifiedby, modifiedon from contact where contact_id = <contact_id>` |
+
 
 
