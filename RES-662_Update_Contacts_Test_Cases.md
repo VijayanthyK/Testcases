@@ -14,7 +14,8 @@ This package updates Contact records in Microsoft Dataverse based on updates fro
 - Updates Field: Web_Registered_Date in Production_ED.Contact
 - Logic: Gets registration date from external systems for the PivotalContactId.
 - Dataverse Relevance: Mapped to col_webregistereddate column in Contact table
+## Contributors
 
-  ### Contact
-- Dev  : Baba Pathan
-- QA   : Vijayanthy
+- **Developer**: Baba Pathan  
+- **QA**: Vijayanthy 
+
