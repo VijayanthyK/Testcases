@@ -1,4 +1,6 @@
-### Package Name: Update Contacts from Neo
+# Package Name: Update Contacts from Neo (RES-662)
+## Description 
+This package updates Contact records in Microsoft Dataverse based on updates from the NEO system.
 ### Step 1: Group Flag Step
 - Updates Field: HasBKGHistory in Production_ED.Contact
 - Logic: Checks if there are mismatches between historical booking flags and actual travel behavior.
