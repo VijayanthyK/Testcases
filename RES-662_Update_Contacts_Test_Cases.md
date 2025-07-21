@@ -33,7 +33,7 @@ This package updates Contact records in Microsoft Dataverse based on updates fro
 | Target                           | `collette-dev.crm.dynamics.com.contact`<br>`[PIV16SQLTEST].Production_ED.contact`                                                              |
 | API Version                      | V2         
 
-# Test Cases – RES-662 Update Contacts from Neo
+# Test Cases 
 
 | **Test Case #** | **Test Case Description** | **Pre-requisite** | **Test Steps** | **Test Data** | **Expected Result** | **Actual Result** | **Status** | **Notes** |
 |-----------------|---------------------------|--------------------|----------------|----------------|----------------------|-------------------|------------|-----------|
